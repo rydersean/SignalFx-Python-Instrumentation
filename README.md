@@ -5,6 +5,10 @@ I wrote this python instrumentation based on the documentation provided here htt
 
 Installation
 
+Install python3
+
+$ sudo apt install python3 python-pip
+
 To install with pip:
 
 $ pip install signalfx
