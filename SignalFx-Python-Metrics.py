@@ -11,6 +11,7 @@ client = signalfx.SignalFx(api_endpoint=os.getenv("API_ENDPOINT"),
 
 ingest = client.ingest(os.getenv("ORG_TOKEN"))
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+counter=3
 
 try:
     while True:
@@ -21,14 +22,16 @@ try:
                 'timestamp': int(time.time()*1000) }],
             counters=[{
                 'metric': 'dirtydog.python.testingestcounter',
-                'value': randrange(1,10),
+                'value': counter,
                 'timestamp': int(time.time()*1000) }],
             cumulative_counters=[{
                 'metric': 'dirtydog.python.testingestccounter',
-                'value': int(randrange(1,1000)),
+                'value': counter+1,
                 'timestamp': int(time.time()*1000) }]
             )
         ingest.stop()
+        counter=counter+3
         time.sleep(10)
+        
 except KeyboardInterrupt:
     pass
